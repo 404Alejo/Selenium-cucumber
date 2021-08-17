@@ -2,12 +2,21 @@ package stepdefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.WebDriver;
+import util.DriverFactory;
+import util.DriverType;
+
+import java.util.concurrent.TimeUnit;
 
 public class AmazonSearchSteps {
+    WebDriver driver;
+
     @Given("the user navigates to www.amazon.com")
     public void the_user_navigates_to_www_amazon_com() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+        driver = DriverFactory.getDriver(DriverType.CHROME);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("https://www.amazon.com");
     }
 
     @Given("Searches for {string}")
